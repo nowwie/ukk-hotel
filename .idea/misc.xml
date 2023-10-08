@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable-v24/home.xml" value="0.1" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable-v24/hotel.xml" value="0.1" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable-v24/profile.xml" value="0.1" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable-v24/use.xml" value="0.1" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable/back.xml" value="0.2055" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable/custom_button_back.xml" value="0.154" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable/del.xml" value="0.1895" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable/ic_calendar.xml" value="0.136" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable/progress_back.xml" value="0.154" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable/tambah.xml" value="0.2055" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/drawable/tombyol.xml" value="0.186" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_kamar.xml" value="0.16927083333333334" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_kamar_insert.xml" value="0.16927083333333334" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_kamr_details.xml" value="0.264" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_main.xml" value="0.12" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_sign_up.xml" value="0.1616075245831552" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_tipe.xml" value="0.136" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_tipe_details.xml" value="0.4190283400809717" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_tipe_insert.xml" value="0.1" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_transaksi.xml" value="0.2" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_transaksi_details.xml" value="0.2" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_transaksi_insert.xml" value="0.2" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_user.xml" value="0.1" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_user_details.xml" value="0.1" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_user_editor.xml" value="0.2" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_user_fetch.xml" value="0.1" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/activity_user_insert.xml" value="0.2359375" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/kamar_list_item.xml" value="0.264" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/tipe_list_item.xml" value="0.25" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/tipe_update.xml" value="0.1" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/transaksi_list.xml" value="0.4" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/user_list_item.xml" value="0.25" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/layout/user_update.xml" value="0.25" />
+        <entry key="..\:/Users/Novita Azka Maghfira/ukk/app/src/main/res/menu/menu_user_navbar.xml" value="0.1859375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

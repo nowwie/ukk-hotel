@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="jobdesk">
+        <item>Pilih jobdesk</item>
+        <item>Admin</item>
+        <item>Receptionist</item>
+    </string-array>
+
+    <string-array name="popup">
+        <item>Ubah</item>
+        <item>Hapus</item>
+        <item>Batal</item>
+    </string-array>
+</resources>

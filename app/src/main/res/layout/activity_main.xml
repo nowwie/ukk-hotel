@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="#F5E1D4">
+
+
+    <LinearLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_above="@+id/bottomNavigationView">
+
+    <!-- Deskripsi -->
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="Selamat Datang di Aplikasi Hotel"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+
+        android:src="@drawable/htl"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+<!--            android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+<!--            android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+<!--            android:orientation="vertical">-->
+
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+<!--                android:layout_marginTop="@dimen/activity_horizontal_margin"-->
+<!--                android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+<!--                android:layout_marginBottom="@dimen/activity_vertical_margin">-->
+
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/datauser"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+<!--                    android:src="@drawable/use" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/buttonUser"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_toRightOf="@+id/datauser"-->
+<!--                    android:text="Data User"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+<!--                android:layout_marginTop="@dimen/activity_horizontal_margin"-->
+<!--                android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+<!--                android:layout_marginBottom="@dimen/activity_vertical_margin">-->
+
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/tipekamar"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+<!--                    android:src="@drawable/hotel" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/buttonTipe"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_toRightOf="@+id/tipekamar"-->
+<!--                    android:text="Tipe Kamar"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+<!--                android:layout_marginTop="@dimen/activity_horizontal_margin"-->
+<!--                android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+<!--                android:layout_marginBottom="@dimen/activity_vertical_margin">-->
+
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/kamar"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+<!--                    android:src="@drawable/home" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/buttonKmr"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_toRightOf="@+id/kamar"-->
+<!--                    android:text="Kamar"-->
+<!--                    android:textSize="20sp" />-->
+
+<!--            </RelativeLayout>-->
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="345dp"
+        android:layout_height="58dp"
+        android:layout_below="@id/textViewTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="Temukan kenyamanan dan layanan terbaik di Hotel Kami."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="456dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Tempat Terbaik untuk Menginap!"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="530dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/menu_user_navbar"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

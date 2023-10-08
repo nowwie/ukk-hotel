@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "927430378417",
+    "project_id": "ukkhotel-c5f00",
+    "storage_bucket": "ukkhotel-c5f00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927430378417:android:5b1b2b83ae9d20a96db390",
+        "android_client_info": {
+          "package_name": "com.example.ukk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927430378417-ng0s5e1pf90k9k6l297rhkc8qde9s3pl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMz4xBiOaT5j7YPDd2CERx8Si9DP_vSpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927430378417-ng0s5e1pf90k9k6l297rhkc8qde9s3pl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

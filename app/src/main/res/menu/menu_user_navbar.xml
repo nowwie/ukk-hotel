@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:title="Home"
+        android:icon="@drawable/home"
+    />
+
+    <item
+        android:id="@+id/navigation_kmr"
+        android:title="kamar"
+        android:icon="@drawable/hotel"
+        />
+
+    <item
+        android:id="@+id/navigation_reser"
+        android:title="Transaksi"
+        android:icon="@drawable/reservasi"
+        />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:title="User"
+        android:icon="@drawable/profile"
+        />
+
+</menu>
