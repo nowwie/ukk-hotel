@@ -2,14 +2,17 @@ package com.example.ukk.Transaksi
 
 
 import android.app.DatePickerDialog
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import com.example.ukk.R
 import com.example.ukk.TipeKamar.TipeModel
 import com.example.ukk.Transaksi.TransaksiModel
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class TransaksiInsertActivity : AppCompatActivity() {
@@ -25,6 +28,7 @@ class TransaksiInsertActivity : AppCompatActivity() {
     private lateinit var dbRef: DatabaseReference
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var tipeKamarList: List<TipeModel>
+    private lateinit var db :FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,7 @@ class TransaksiInsertActivity : AppCompatActivity() {
         spinner = findViewById<Spinner>(R.id.spjKamar)
         jmKamar = findViewById(R.id.jmlKmr)
         pharga = findViewById(R.id.idHarga)
+        db = FirebaseFirestore.getInstance()
 
         dbRef = FirebaseDatabase.getInstance().getReference("Transaksi")
 
@@ -53,6 +58,8 @@ class TransaksiInsertActivity : AppCompatActivity() {
         btnPesan.setOnClickListener {
             savePesanan()
         }
+
+        setSpinner()
     }
 
     private fun showDatePickerDialog(editText: EditText) {
@@ -80,8 +87,8 @@ class TransaksiInsertActivity : AppCompatActivity() {
         val jmlKamar = jmKamar.text.toString()
         val tglck = tglChekIn.text.toString()
         val tglco = tglChekOut.text.toString()
-        val sharga = pharga.text.toString()
-        val selectedKamar = spinner.selectedItem.toString()
+        val tipeKamar = spinner.selectedItem.toString()
+        val harga = pharga.text.toString()
 
         if (nPesan.isEmpty()) {
             nmPesan.error = "Isi Nama Anda"
@@ -95,30 +102,79 @@ class TransaksiInsertActivity : AppCompatActivity() {
             tglChekIn.error = "Masukkan Tanggal Check In"
             return
         }
-        tglChekOut.error = "Masukkan Tanggal Check Out"
-        return
-        if (tglco.isEmpty()) {
-        }
-        if (selectedKamar == "Pilih Tipe Kamar") {
-            Toast.makeText(this, "Pilih Tipe Kamar", Toast.LENGTH_LONG).show()
-            return
-        }
 
-        val IdPesan = dbRef.push().key!!
-        val pesan = TransaksiModel(IdPesan, nPesan, tglck, tglco,  jmlKamar)
-        Toast.makeText(this, "Nama Kamar: $selectedKamar", Toast.LENGTH_LONG).show()
+        val pesan = hashMapOf(
+            "namaPesan" to nPesan,
+            "jmlKmr" to jmlKamar,
+            "tglCheckIn" to tglck,
+            "tglCheckOut" to tglco,
+            "selectedItem" to tipeKamar,
+            "harga" to harga
+        )
+        val docRef = db.collection("Transaksi")
+        docRef.add(pesan)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Data Gagal Disimpan", Toast.LENGTH_SHORT).show()
+            }
 
-        dbRef.child(IdPesan).setValue(pesan)
-            .addOnCompleteListener {
-                Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
+    }
 
-                nmPesan.text.clear()
-                jmKamar.text.clear()
-                tglChekIn.text.clear()
-                spinner.setSelection(0)
-                tglChekOut.text.clear()
-            }.addOnFailureListener { err ->
-                Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+    private fun setSpinner() {
+        db.collection("Tipe")
+            .get()
+            .addOnSuccessListener { result ->
+                tipeKamarList = result.toObjects(TipeModel::class.java)
+                val tipeKamarNameList = tipeKamarList.map { it.NamaKmr }
+                adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,)
+                spinner.adapter = adapter
+                val placeholder = "Pilih Tipe Kamar"
+                adapter.add(placeholder)
+                adapter.addAll(tipeKamarNameList)
+                adapter.notifyDataSetChanged()
+
+                spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?, view: View?, position: Int, id: Long
+                    ) {
+                        if (position == 0) {
+                            pharga.text = ""
+                        } else {
+                            val selectedTipeKamar = tipeKamarList[position - 1]
+                            val selectedKamar = spinner.selectedItem.toString()
+                            val jumlahKamar = jmKamar.text.toString()
+                            //add onTextChangedListener to edittext
+                            Toast.makeText(this@TransaksiInsertActivity, selectedKamar, Toast.LENGTH_SHORT).show()
+                            if (jumlahKamar.isEmpty()) {
+                                jmKamar.error = "Masukkan Jumlah Kamar"
+                                return
+                            }else{
+                                db.collection("Tipe").whereEqualTo("NamaKmr", selectedKamar)
+                                    .get()
+                                    .addOnSuccessListener { result ->
+                                        val hargaKamar = result.documents[0].get("Harga").toString()
+                                        Toast.makeText(this@TransaksiInsertActivity, hargaKamar, Toast.LENGTH_SHORT).show()
+                                        Log.d(TAG, hargaKamar)
+                                        val totalHarga = hargaKamar.toInt() * jumlahKamar.toInt()
+                                        pharga.text = totalHarga.toString()
+                                    }
+                                    .addOnFailureListener { exception ->
+                                        Log.e(TAG, "get failed with ", exception)
+                                        Toast.makeText(this@TransaksiInsertActivity, "Error Fetching Data", Toast.LENGTH_SHORT).show()
+                                    }
+                            }
+                        }
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {}
+                }
+            }
+
+            .addOnFailureListener { exception ->
+                Log.e("Firestore Error", exception.message.toString())
             }
     }
 

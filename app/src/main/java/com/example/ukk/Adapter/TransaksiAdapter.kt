@@ -9,8 +9,7 @@ import com.example.ukk.R
 import com.example.ukk.Transaksi.TransaksiModel
 import java.text.FieldPosition
 
-class TransaksiAdapter (private val transaksiList: ArrayList<TransaksiModel>):
-        RecyclerView.Adapter<TransaksiAdapter.ViewHolder>(){
+class TransaksiAdapter (private val transaksiList: ArrayList<TransaksiModel>): RecyclerView.Adapter<TransaksiAdapter.ViewHolder>(){
             private lateinit var pListener: onItemClickListener
 
             interface onItemClickListener{

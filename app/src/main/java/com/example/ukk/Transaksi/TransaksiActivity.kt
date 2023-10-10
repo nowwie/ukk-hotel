@@ -12,8 +12,10 @@ import com.example.ukk.Adapter.TransaksiAdapter
 import com.example.ukk.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
-class TransaksiActivity : AppCompatActivity() {
+class   TransaksiActivity : AppCompatActivity() {
 
     private lateinit var btnInsertPesan: FloatingActionButton
     private lateinit var pRecyclerView: RecyclerView
@@ -21,6 +23,7 @@ class TransaksiActivity : AppCompatActivity() {
     private lateinit var dbRef: DatabaseReference
     private lateinit var btnBack: ImageButton
     private lateinit var btndel: ImageButton
+    private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +31,7 @@ class TransaksiActivity : AppCompatActivity() {
 
         btnInsertPesan = findViewById(R.id.btnAddTransaksi)
 
-        btnInsertPesan.setOnClickListener{
+        btnInsertPesan.setOnClickListener {
             val intent = Intent(this, TransaksiInsertActivity::class.java)
             startActivity(intent)
         }
@@ -43,50 +46,41 @@ class TransaksiActivity : AppCompatActivity() {
     }
 
     private fun getPesanan() {
-        dbRef = FirebaseDatabase.getInstance().getReference("Transaksi")
+        val docRef = db.collection("Transaksi")
+        docRef.addSnapshotListener(){
+            snapshot, e ->
+            if (e != null){
+                Toast.makeText(this, "Listen failed.", Toast.LENGTH_LONG).show()
+                return@addSnapshotListener
+            }
 
-        dbRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
+            if (snapshot != null){
                 pList.clear()
-                if (snapshot.exists()) {
-                    for (eSnap in snapshot.children) {
-                        val pData = eSnap.getValue(TransaksiModel::class.java)
-                        pList.add(pData!!)
-                    }
-                    val pAdapter = TransaksiAdapter(pList)
-                    pRecyclerView.adapter = pAdapter
-
-                    pAdapter.setOnItemclickListener(object : TransaksiAdapter.onItemClickListener {
-                        override fun onItemClick(position: Int) {
-
-                            val intent =
-                                Intent(this@TransaksiActivity, TransaksiDetailsActivity::class.java)
-
-                            intent.putExtra("idPesan", pList[position].IdPesan)
-                            intent.putExtra("namaPesan", pList[position].namaPesan)
-                            intent.putExtra("tglCheckIn", pList[position].tglCheckIn)
-                            intent.putExtra("tglCheckOut", pList[position].tglCheckOut)
-                            intent.putExtra("harga", pList[position].harga)
-                            startActivity(intent)
-                        }
-                    })
-
-
+                for (document in snapshot){
+                    val pesanan = document.toObject(TransaksiModel::class.java)
+                    pList.add(pesanan)
                 }
+                val TAdapter = TransaksiAdapter(pList)
+                pRecyclerView.adapter = TAdapter
+
+                TAdapter.setOnItemclickListener(object : TransaksiAdapter.onItemClickListener{
+                    override fun onItemClick(position: Int) {
+                        val intent = Intent(this@TransaksiActivity, TransaksiDetailsActivity::class.java)
+                        intent.putExtra("id", pList[position].IdPesan)
+                        intent.putExtra("nama", pList[position].namaPesan)
+                        intent.putExtra("jmlKmr", pList[position].jmlKmr)
+                        intent.putExtra("tipeKmr", pList[position].selectedItem)
+                        intent.putExtra("tglChekIn", pList[position].tglCheckIn)
+                        intent.putExtra("tglChekOut", pList[position].tglCheckOut)
+                        intent.putExtra("harga", pList[position].harga)
+                        startActivity(intent)
+                    }
+                })
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-
-//        btndel = findViewById(R.id.hapus)
-//        btndel.setOnClickListener {
-//            hapusData(
-//                intent.getStringExtra("idPesan").toString()
-//            )
         }
     }
+}
 
 //    private fun hapusData(id: String){
 //        val dbRef = FirebaseDatabase.getInstance().getReference("Transaksi").child(id)

@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.ukk.R
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import javax.crypto.spec.DESKeySpec
 
 class TipeDetailsActivity : AppCompatActivity() {
@@ -20,6 +22,7 @@ class TipeDetailsActivity : AppCompatActivity() {
     private lateinit var tvDesk: TextView
     private lateinit var btnUpdateTipe: Button
     private lateinit var btnDelTipe: Button
+    private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,14 +123,26 @@ class TipeDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateTipeData(
-        tipeId: String,
-        namaKmr: String,
-        harga: String,
-        deskripsi: String,
-    ){
-        val dbref = FirebaseDatabase.getInstance().getReference("Tipe").child(tipeId)
-        val tipeInfo = TipeModel(tipeId, namaKmr, harga, deskripsi)
-        dbref.setValue(tipeInfo)
+    private fun updateTipeData(tipeId: String, namaKmr: String, harga: String, deskripsi: String, ){
+        val docRef = db.collection("Tipe").whereEqualTo("TipeId", tipeId)
+        docRef.addSnapshotListener(){
+            snapshot, e ->
+            if (e != null){
+                Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
+                return@addSnapshotListener
+            }
+            if (snapshot != null){
+                for (document in snapshot){
+                    db.collection("Tipe").document(document.id)
+                        .update("NamaKmr", namaKmr)
+                    db.collection("Tipe").document(document.id)
+                        .update("Harga", harga)
+                    db.collection("Tipe").document(document.id)
+                        .update("deskripsi", deskripsi)
+                }
+            }else{
+                Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }
